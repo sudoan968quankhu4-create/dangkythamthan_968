@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Trang Thông Tin Đơn Vị và Đăng Ký Thăm</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+
+/* DIV nền cho trang thông tin */
+#background {
+  position: fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: url('anh.jpg') no-repeat center center fixed;
+  background-size: cover;
+  z-index: -1;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  color: #000;
+}
+
+header {
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
+  text-align: center;
+  backdrop-filter: blur(5px);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  color: #000;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+header h1 {
+    font-size: 1.7rem;       
+    margin-bottom: 10px;
+    color: #007BFF;        
+}
+.login-btn {
+  position: fixed;
+  top: 0.5cm;
+  left: 0.5cm;
+  width: 3cm;
+  height: 2cm;
+  background: #003366;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  z-index: 1001;
+  font-size: 1rem;      
+}
+.login-btn:hover { background: #0055aa; }
+
+section {
+  max-width: 900px;
+  margin: 100px auto 30px;
+  padding: 10px;
+}
+.card {
+  background: rgba(0, 33, 33, 0.4);
+  backdrop-filter: blur(15px);
+  padding: 25px;
+  margin: 20px 0;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+  color: #fff;
+}
+.card:hover {transform: translateY(-5px);}
+
+#gth h2,
+#anh h2,
+#qd h2 {
+  color: #F5F5DC;
+}
+
+p, ul {line-height:1.6; color: #fff;}
+ul li {margin-bottom:8px;}
+iframe {border-radius: 12px; width: 100%; height: 315px;}
+
+.image-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+.image-item {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image-item img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  height: 150px;
+}
+.image-item p {
+  margin-top: 5px;
+  text-align: center;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+/* Form đăng ký */
+.container {
+  max-width: 600px;
+  margin: 50px auto 50px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(173, 216, 230, 0.8));
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  color: #000;
+  border: 2px solid #1e90ff;
+}
+.container h2 {text-align:center; margin-bottom:25px; color:#003366;}
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 15px;
+  color: #003366;
+}
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 2px solid #1e90ff;
+  background: rgba(255,255,255,0.7);
+  color: #000;
+  transition: all 0.3s ease;
+}
+input::placeholder {color: #555;}
+input:focus, select:focus {
+  outline: none;
+  border-color: #ff4500;
+  background: rgba(255,255,255,0.9);
+}
+button {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 10px;
+  background: #ff4500;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+button:hover {background: #ff6347; transform: translateY(-2px);}
+#status {text-align:center; margin-top:15px; font-weight:bold; color:#ff4500;}
+
+@media(max-width:600px){
+  header h1 {font-size:1.4rem;}
+  .card {padding:15px; margin:15px 10px;}
+  iframe {height:200px;}
+  .image-item {width:48%; margin-bottom:10px;}
+  .container {padding:20px; margin:80px 10px;}
+  input, select {padding:10px;}
+  button {padding:12px; font-size:14px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Nền trang thông tin -->
+<div id="background"></div>
+
+<header>
+<h1>SƯ ĐOÀN 968, QUÂN KHU 4</h1>
+<h2>“Kiên trì, bền bỉ, dũng cảm, ngoan cường, bạn tin, dân mến, đã đánh là thắng”</h2>
+<button class="login-btn" onclick="window.location.href='login.html'">Đăng nhập quản lý</button>
+</header>
+
+<section>
+  <!-- Card Giới thiệu -->
+  <div class="card" id="gth">
+    <h2>Giới thiệu</h2>
+    <p> Sư đoàn 968 là đơn vị bộ binh chủ lực thuộc Quân khu 4, thành lập ngày 28/6/1968 tại mặt trận Nam Lào. Trong chặng đường xây dựng, chiến đấu và trưởng thành, có 20 năm cán bộ-chiến sĩ Sư đoàn trực tiếp cầm súng chiến đấu, đó là hai lần thực hiện nhiệm vụ quốc tế cao cả trên đất bạn Lào; tham gia Chiến dịch Tây Nguyên, Chiến dịch Hồ Chí Minh mùa Xuân năm 1975 giải phóng miền Nam, thống nhất đất nước; thực hiện nhiệm vụ truy quét Fulro, tham gia xây dựng, củng cố chính quyền cách mạng trong những năm đầu sau giải phóng ở Tây Nguyên. Các thế hệ cán bộ, chiến sĩ Sư đoàn đã viết nên truyền thống vẻ vang: “Kiên trì, bền bỉ, dũng cảm, ngoan cường, bạn tin, dân mến, đã đánh là thắng”. Với những chiến công, thành tích đặc biệt xuất sắc, Sư đoàn và 15 tập thể, 6 cá nhân được Đảng, Nhà nước tuyên dương Danh hiệu Anh hùng lực lượng vũ trang Nhân dân. Sư đoàn được Đảng, Nhà nước, Bộ Quốc phòng nước ta và nước bạn Lào cùng Bộ Tư lệnh Quân khu, cấp ủy, chính quyền các địa phương tặng thưởng nhiều phần thưởng cao quý. Đặc biệt, trong dịp kỷ niệm 55 Năm ngày thành lập, Sư đoàn vinh dự được Chủ tịch nước tặng thưởng Huân chương Bảo vệ Tổ quốc hạng Nhì. Hiện nay, Sư đoàn 968 thực hiện nhiệm vụ huấn luyện, sẵn sàng chiến đấu, xây dựng Sư đoàn vững mạnh toàn diện, góp phần bảo vệ vững chắc Tổ quốc.</p>
+  </div>
+<!-- Card Tin tức đơn vị -->
+<div class="card" id="tintuc">
+  <h2>Tin tức đơn vị</h2>
+  <ul>
+    <li>
+      <a href="https://www.facebook.com/SUDOAN968?locale=vi_VN"
+         target="_blank"
+         style="color: #F5F5DC; text-decoration: underline;">
+        Trang Facebook của đơn vị: Màu xanh áo lính
+      </a>
+    </li><li>
+      <a href="https://www.qdnd.vn/quoc-phong-an-ninh/tin-tuc/su-doan-968-quan-khu-4-phat-dong-phong-trao-thi-dua-giai-doan-1-nam-2025-810541"
+         target="_blank"
+         style="color: #F5F5DC; text-decoration: underline;">
+        Sư đoàn 968 (Quân khu 4) phát động phong trào thi đua giai đoạn 1 năm 2025
+      </a>
+    </li>
+    <li>
+      <a href="https://www.qdnd.vn/quoc-phong-an-ninh/tin-tuc/dai-hoi-dang-bo-su-doan-968-quan-khu-4-nhiem-ky-2025-2030-thanh-cong-836144"
+         target="_blank"
+         style="color: #F5F5DC; text-decoration: underline;">
+        Đại hội Đảng bộ Sư đoàn 968 (Quân khu 4) nhiệm kỳ 2025-2030 thành công
+      </a>
+    </li>
+    <li>
+      <a href="https://www.qdnd.vn/quoc-phong-an-ninh/tin-tuc/su-doan-968-quan-khu-4-hoi-thao-chien-si-moi-nam-2025-827865"
+         target="_blank"
+         style="color: #F5F5DC; text-decoration: underline;">
+        Sư đoàn 968 (Quân khu 4): Hội thao chiến sĩ mới năm 2025
+      </a>
+    </li>
+    <li>
+      <a href="https://baoquankhu4.com.vn/chinh-tri/quan-su-quoc-phong/su-doan-968-to-chuc-dien-tap-thuc-binh-ban-dan-hoi-nam-2025.html"
+         target="_blank"
+         style="color: #F5F5DC; text-decoration: underline;">
+        Sư đoàn 968 (Quân khu 4) tổ chức diễn tập thực binh bắn đạn hơi năm 2025
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- CSS hover effect (đặt trong phần <style> nếu chưa có) -->
+<style>
+#tintuc a:hover {
+  color: #ff4500; /* đỏ cam khi hover, bạn có thể đổi nếu muốn */
+}
+</style>
+
+  <!-- Card Ảnh Đơn Vị -->
+  <div class="card" id="anh">
+    <h2>Ảnh Đơn Vị</h2>
+    <div class="image-row">
+      <div class="image-item"><img src="anh1.jpg" alt="Ảnh 1"><p>Đại hội Đại biểu sư đoàn 968</p></div>
+      <div class="image-item"><img src="anh2.jpg" alt="Ảnh 2"><p>Tập huấn cán bộ</p></div>
+      <div class="image-item"><img src="anh3.jpg" alt="Ảnh 3"><p>Trưng bày mô hình học cụ</p></div>
+      <div class="image-item"><img src="anh4.jpg" alt="Ảnh 4"><p>Công tác kiểm tra </p></div>
+      <div class="image-item"><img src="anh5.jpg" alt="Ảnh 5"><p>Động viên CSM</p></div>
+      <div class="image-item"><img src="anh6.jpg" alt="Ảnh 6"><p>Hội thao huấn luyện CSM</p></div>
+    </div>
+  </div>
+
+  <!-- Card Quy định thăm gặp -->
+  <div class="card" id="qd">
+    <h2>Quy định thăm gặp</h2>
+    <ul>
+      <li>Tuân thủ hướng dẫn của cán bộ trực.</li>
+      <li>Không chụp ảnh tại khu vực cấm.</li>
+      <li>Không mang thức ăn, đồ uống sai quy định vào đơn vị.</li>
+    </ul>
+  </div>
+<!-- Card Video Local -->
+<div class="card">
+  <h2>Video giới thiệu</h2>
+  <video width="100%" height="314" controls>
+    <source src="VIDEO.mp4" type="video/mp4">
+    Trình duyệt của bạn không hỗ trợ video.
+  </video>
+</div>
+</section>
+<!-- Form đăng ký thăm -->
+<div class="container">
+<h2>Đăng ký vào thăm quân nhân</h2>
+<form id="visitForm">
+  <label>Họ tên khách:</label>
+  <input type="text" id="hoten" placeholder="Nhập họ tên" required />
+  
+  <label>Số CCCD:</label>
+  <input type="text" id="cccd" placeholder="Nhập CCCD" required />
+  
+  <label>Mối quan hệ:</label>
+  <input type="text" id="quanhe" placeholder="Nhập quan hệ" required />
+ <label>Số lượng người lên thăm:</label>
+    <input type="number" id="soluong" placeholder="Nhập số lượng" required min="1" />
+
+  <label>Phương tiện:</label>
+  <input type="text" id="phuongtien" placeholder="Phương tiện" required />
+
+  <label>Tên quân nhân muốn thăm:</label>
+  <input type="text" id="quannhan" placeholder="Nhập tên quân nhân" required />
+  
+  <label>Số điện thoại:</label>
+  <input type="text" id="sdt" placeholder="Nhập số điện thoại" required />
+  
+  <label>Tỉnh/Thành phố:</label>
+  <select id="tinhthanh" required>
+    <option value="">Chọn tỉnh/thành</option>
+    <option value="Thanh Hóa">Thanh Hóa</option>
+    <option value="Nghệ An">Nghệ An</option>
+    <option value="Hà Tĩnh">Hà Tĩnh</option>
+    <option value="Quảng Trị">Quảng Trị</option>
+    <option value="Thành phố Huế">Thành phố Huế</option>
+    <option value="Khác">Khác</option>
+  </select>
+  
+  <label>Đơn vị:</label>
+  <input type="text" id="donvi" placeholder="Nhập đơn vị" required />
+  
+  <button type="submit">Gửi đăng ký</button>
+</form>
+<p id="status"></p>
+</div>
+
+<script>
+document.getElementById("visitForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const statusEl = document.getElementById("status");
+
+  const data = {
+    hoten: document.getElementById("hoten").value,
+    cccd: document.getElementById("cccd").value,
+    quanhe: document.getElementById("quanhe").value,
+	soluong: Number(document.getElementById("soluong").value),
+	phuongtien: document.getElementById("phuongtien").value,
+    quannhan: document.getElementById("quannhan").value,
+    sdt: document.getElementById("sdt").value,
+    tinhthanhpho: document.getElementById("tinhthanh").value,
+    donvi: document.getElementById("donvi").value,
+    trangthai: "Chờ duyệt",
+    thoigian: new Date().toLocaleString()
+  };
+
+  fetch("https://script.google.com/macros/s/AKfycbwYhobSkuIXAOgfdkj0EHVjeDNzgHqlE0Nm1ho1Sb0rfsEwr7d1tFQFp25wXtV0PL7qdw/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(() => {
+    statusEl.innerHTML = "Đăng ký thành công!";
+    document.getElementById("visitForm").reset();
+    setTimeout(() => { statusEl.innerHTML = ""; }, 40000);
+  })
+  .catch(err => {
+    console.error(err);
+    statusEl.innerHTML = "Gửi thất bại, vui lòng thử lại!";
+    setTimeout(() => { statusEl.innerHTML = ""; }, 40000);
+  });
+});
+</script>
+</body>
+</html>
+
